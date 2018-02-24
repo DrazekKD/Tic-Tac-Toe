@@ -1,0 +1,10 @@
+$background: #23292D;
+$text-color: #FFFFFF;
+$line-color: #000000;
+$field-color: #77BDC4;
+
+%flex-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

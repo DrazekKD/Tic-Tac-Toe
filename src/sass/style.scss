@@ -1,3 +1,52 @@
-body {
-  background-color: black;
+@import "variables";
+
+html {
+  font-size: 6px;
+
+
+  body {
+    background-color: $background;
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+
+    .container{
+      position: absolute;
+      top: 50%;
+      left: 5rem;
+      right: 5rem;
+      transform: translateY(-60%);
+
+      .main-informations {
+        @extend  %flex-center;
+        padding: 5rem 5rem;
+        font-size: 5rem;
+        .who-moving {
+
+        }
+      }
+
+      .game-field {
+
+        .row {
+          @extend %flex-center;
+
+          .field {
+            height: 15rem;
+            width: 15rem;
+            margin: 1rem;
+            border-radius: 1rem;
+            background: $field-color;
+
+            &:hover {
+              background: url("../img/Circle.svg") no-repeat top left;
+              background-size: cover;
+            }
+          }
+
+        }
+
+      }
+    }
+  }
 }
