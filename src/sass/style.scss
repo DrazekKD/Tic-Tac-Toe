@@ -1,7 +1,7 @@
 @import "variables";
 
 html {
-  font-size: 6px;
+  font-size: 9px;
 
 
   body {
@@ -30,7 +30,13 @@ html {
 
         .row {
           @extend %flex-center;
-
+          .svg {
+            height: 100%;
+            width: 70%;
+            margin: 0 13%;
+            fill-opacity: 1;
+            fill: #FFFFFF;
+          }
           .field {
             height: 15rem;
             width: 15rem;
@@ -39,8 +45,8 @@ html {
             background: $field-color;
 
             &:hover {
-              background: url("../img/Circle.svg") no-repeat top left;
-              background-size: cover;
+
+
             }
           }
 
