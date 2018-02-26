@@ -2,7 +2,7 @@
 
 html {
   font-size: 5px;
-
+  font-family: 'Pacifico', cursive;
 
   body {
     background-color: $background;
@@ -20,8 +20,9 @@ html {
       //GAME MENU
       .game-menu {
         .logo {
+          letter-spacing: 0.3rem;
           text-align: center;
-          font-size: 10rem;
+          font-size: 8rem;
           margin-bottom: 5rem;
         }
         .menu {
@@ -37,21 +38,20 @@ html {
               width: 30rem;
               height: 13rem;
               border-radius: 7rem;
-              font-weight: bold;
+              font-size: 5rem;
+              font-family: 'Pacifico', cursive;
             }
           }
         }
       }
       //PLAYING FIELD
       .tic-tac-toe {
-
         display: none;
+
         .main-informations {
           @extend  %flex-center;
           padding: 5rem 5rem;
           font-size: 5rem;
-          .who-moving {
-          }
         }
 
         .game-field {
@@ -91,4 +91,5 @@ html {
       }
     }
   }
+
 }

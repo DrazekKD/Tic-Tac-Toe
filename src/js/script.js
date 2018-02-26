@@ -101,8 +101,10 @@ const whoMove = document.getElementById("whoMove");
 let move = Math.floor((Math.random()*10)+1);
 if(move%2 === 0) {
     whoMove.innerHTML = "move circle";
+    whoMove.style.color = "#EBAE51";
 }else {
     whoMove.innerHTML = "move cross";
+    whoMove.style.color = "#DB6759";
 }
 
 //  Select single  player mode
@@ -120,7 +122,6 @@ function turnOneSinglePlayerMode() {
     function winEffects(j){
         fieldsArray[j].style.backgroundColor = winColor;
         fieldsArray[j].style.transform = scale;
-        ticTacToe.style.display = "block";
         results.style.display = "block";
     }
 
@@ -200,6 +201,7 @@ function turnOneSinglePlayerMode() {
         move++;
         if(move%2 === 0)
         {
+            whoMove.style.color = "#EBAE51";
             whoMove.innerHTML = "move circle";
 
             this.innerHTML = crossSvg;
@@ -209,6 +211,7 @@ function turnOneSinglePlayerMode() {
             fieldsSimulation[this.getAttribute('data-field-id') - 1] = 'cross';
 
         }else {
+            whoMove.style.color = "#DB6759";
             whoMove.innerHTML = "move cross";
 
             this.innerHTML = circleSvg;
