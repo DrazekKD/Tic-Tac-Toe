@@ -1,7 +1,7 @@
 @import "variables";
 
 html {
-  font-size: 9px;
+  font-size: 5px;
 
 
   body {
@@ -11,47 +11,76 @@ html {
     padding: 0;
 
     .container{
-      position: absolute;
-      top: 50%;
-      left: 5rem;
-      right: 5rem;
-      transform: translateY(-60%);
 
-      .main-informations {
-        @extend  %flex-center;
-        padding: 5rem 5rem;
-        font-size: 5rem;
-        .who-moving {
-
+        position: absolute;
+        top: 10%;
+        left: 5rem;
+        right: 5rem;
+        //transform: translateY(-60%);
+      //GAME MENU
+      .game-menu {
+        .logo {
+          text-align: center;
+          font-size: 10rem;
+          margin-bottom: 5rem;
         }
-      }
+        .menu {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-      .game-field {
+          .menu-buttons {
+            margin: 3rem;
 
-        .row {
-          @extend %flex-center;
-          .svg {
-            height: 100%;
-            width: 70%;
-            margin: 0 13%;
-            fill-opacity: 1;
-            fill: #FFFFFF;
-          }
-          .field {
-            height: 15rem;
-            width: 15rem;
-            margin: 1rem;
-            border-radius: 1rem;
-            background: $field-color;
-
-            &:hover {
-
-
+            button {
+              width: 30rem;
+              height: 13rem;
+              border-radius: 7rem;
+              font-weight: bold;
             }
           }
+        }
+      }
+      //PLAYING FIELD
+      .tic-tac-toe {
 
+        display: none;
+        .main-informations {
+          @extend  %flex-center;
+          padding: 5rem 5rem;
+          font-size: 5rem;
+          .who-moving {
+          }
         }
 
+        .game-field {
+
+          .row {
+            @extend %flex-center;
+            .svg {
+              height: 100%;
+              width: 70%;
+              margin: 0 13%;
+              fill-opacity: 1;
+              fill: #FFFFFF;
+            }
+            .field {
+              height: 15rem;
+              width: 15rem;
+              margin: 1rem;
+              border-radius: 1rem;
+              background: $field-color;
+
+              &:hover {
+
+
+              }
+            }
+
+          }
+
+        }
       }
     }
   }

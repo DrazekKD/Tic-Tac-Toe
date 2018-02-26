@@ -89,33 +89,55 @@ const crossSvg = "<svg class=\"svg\" version=\"1.1\" id=\"Capa_1\" xmlns=\"http:
     "</svg>";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-let move =0;
-let fieldsArray =[];
-const whoMove = document.getElementById("whoMove");
+// Menu variables
+const singlePlayer = document.getElementById("singlePlayer");
+const twoPlayer = document.getElementById("twoPlayer");
+const ranking = document.getElementById("ranking");
+const menu = 0;
 
-function selectField(){
-    move++;
-    if(move%2 === 0)
-    {
+//  Select single  player mode
+singlePlayer.addEventListener('click',turnOneSinglePlayerMode);
 
-        this.innerHTML = crossSvg;
-        this.removeEventListener('click',selectField);
-        this.style.backgroundColor = "#DB6759";
-    }else {
 
-        this.innerHTML = circleSvg;
-        this.removeEventListener('click',selectField);
-        this.style.backgroundColor = "#EBAE51";
+/// Main function game
+function turnOneSinglePlayerMode() {
+
+    const gameMenu = document.getElementById('gameMenu');
+    gameMenu.style.display = "none";
+
+    const ticTacToe = document.getElementById('ticTacToe');
+    ticTacToe.style.display = "block";
+
+    let move = 0;
+    let fieldsArray =[];
+    const whoMove = document.getElementById("whoMove");
+
+    function selectField(){
+        move++;
+        if(move%2 === 0)
+        {
+
+            this.innerHTML = crossSvg;
+            this.removeEventListener('click',selectField);
+            this.style.backgroundColor = "#DB6759";
+        }else {
+
+            this.innerHTML = circleSvg;
+            this.removeEventListener('click',selectField);
+            this.style.backgroundColor = "#EBAE51";
+        }
+
     }
 
+
+
+    for(let i=0; i<9; i++) {
+        fieldsArray[i] = document.querySelector(`div[data-field-id="${i+1}"]`);
+        fieldsArray[i].addEventListener('click', selectField);
+    }
+    
 }
 
-
-
-for(let i=0; i<9; i++) {
-    fieldsArray[i] = document.querySelector(`div[data-field-id="${i+1}"]`);
-    fieldsArray[i].addEventListener('click', selectField);
-}
 
 
 
