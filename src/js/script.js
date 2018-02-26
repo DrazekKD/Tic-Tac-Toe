@@ -112,7 +112,18 @@ singlePlayer.addEventListener('click',turnOneSinglePlayerMode);
 /// Main function game
 function turnOneSinglePlayerMode() {
     // Win color field
+    const results = document.getElementById('results');
+    const whoWin = document.getElementById('whoWin');
     const winColor= "green";
+    const scale = "scale(1)";
+
+    function winEffects(j){
+        fieldsArray[j].style.backgroundColor = winColor;
+        fieldsArray[j].style.transform = scale;
+        ticTacToe.style.display = "block";
+        results.style.display = "block";
+    }
+
     //Array simulation field of game
     let fieldsSimulation =[1,2,3,4,5,6,7,8,9];
 
@@ -124,7 +135,6 @@ function turnOneSinglePlayerMode() {
     const ticTacToe = document.getElementById('ticTacToe');
     ticTacToe.style.display = "block";
 
-    const whoWin = document.getElementById('whoWin');
 
     let fieldsArray =[];
 
@@ -146,7 +156,7 @@ function turnOneSinglePlayerMode() {
 
                 //Change color for win fields
                 for(let j=i;j<(i+3);j+=1) {
-                    fieldsArray[j].style.backgroundColor = winColor;
+                    winEffects(j);
                 }
             }
             console.log(i);
@@ -159,7 +169,7 @@ function turnOneSinglePlayerMode() {
 
                 //Change color for win fields
                 for(let j=i;j<=(i+6);j+=3) {
-                    fieldsArray[j].style.backgroundColor = winColor;
+                    winEffects(j);
                 }
             }
         }
@@ -170,7 +180,7 @@ function turnOneSinglePlayerMode() {
 
             //Change color for win fields
             for(let i=0;i<=8;i+=4) {
-                fieldsArray[i].style.backgroundColor = winColor;
+                winEffects(i);
             }
         }else
         if (fieldsSimulation[2] === fieldsSimulation[4] && fieldsSimulation[4] === fieldsSimulation[6]) {
@@ -179,7 +189,7 @@ function turnOneSinglePlayerMode() {
 
             //Change color for win fields
             for(let i=2;i<=6;i+=2) {
-                fieldsArray[i].style.backgroundColor = winColor;
+                winEffects(i);
             }
         }
 
