@@ -93,7 +93,17 @@ const crossSvg = "<svg class=\"svg\" version=\"1.1\" id=\"Capa_1\" xmlns=\"http:
 const singlePlayer = document.getElementById("singlePlayer");
 const twoPlayer = document.getElementById("twoPlayer");
 const ranking = document.getElementById("ranking");
-const menu = 0;
+
+// Game variables
+const whoMove = document.getElementById("whoMove");
+
+// Show who has the move now
+let move = Math.floor((Math.random()*10)+1);
+if(move%2 === 0) {
+    whoMove.innerHTML = "move circle";
+}else {
+    whoMove.innerHTML = "move cross";
+}
 
 //  Select single  player mode
 singlePlayer.addEventListener('click',turnOneSinglePlayerMode);
@@ -101,31 +111,104 @@ singlePlayer.addEventListener('click',turnOneSinglePlayerMode);
 
 /// Main function game
 function turnOneSinglePlayerMode() {
+    // Win color field
+    const winColor= "green";
+    //Array simulation field of game
+    let fieldsSimulation =[1,2,3,4,5,6,7,8,9];
 
+    // hidden game menu
     const gameMenu = document.getElementById('gameMenu');
     gameMenu.style.display = "none";
 
+    // show field game
     const ticTacToe = document.getElementById('ticTacToe');
     ticTacToe.style.display = "block";
 
-    let move = 0;
+    const whoWin = document.getElementById('whoWin');
+
     let fieldsArray =[];
-    const whoMove = document.getElementById("whoMove");
+
+
+    function delAllEventOnFields() {
+        for(let i=0; i<9; i++) {
+            fieldsArray[i].removeEventListener('click', selectField);
+        }
+    }
+
+    function winningLogic() {
+        console.log(fieldsSimulation);
+
+        // Win horizontal row 1,2,3
+        for(let i=0;i<9;i+=3) {
+            if(fieldsSimulation[i]===fieldsSimulation[i+1]&&fieldsSimulation[i+1]===fieldsSimulation[i+2]){
+                delAllEventOnFields();
+                whoWin.innerHTML += `${fieldsSimulation[i]}`;
+
+                //Change color for win fields
+                for(let j=i;j<(i+3);j+=1) {
+                    fieldsArray[j].style.backgroundColor = winColor;
+                }
+            }
+            console.log(i);
+        }
+        // Win vertical column 1,2,3
+        for(let i=0;i<3;i++) {
+            if (fieldsSimulation[i] === fieldsSimulation[i+3] && fieldsSimulation[i+3] === fieldsSimulation[i+6]) {
+                delAllEventOnFields();
+                whoWin.innerHTML += `${fieldsSimulation[i+3]}`;
+
+                //Change color for win fields
+                for(let j=i;j<=(i+6);j+=3) {
+                    fieldsArray[j].style.backgroundColor = winColor;
+                }
+            }
+        }
+        //Win diagonally
+        if (fieldsSimulation[0] === fieldsSimulation[4] && fieldsSimulation[4] === fieldsSimulation[8]) {
+            delAllEventOnFields();
+            whoWin.innerHTML += `${fieldsSimulation[4]}`;
+
+            //Change color for win fields
+            for(let i=0;i<=8;i+=4) {
+                fieldsArray[i].style.backgroundColor = winColor;
+            }
+        }else
+        if (fieldsSimulation[2] === fieldsSimulation[4] && fieldsSimulation[4] === fieldsSimulation[6]) {
+            delAllEventOnFields();
+            whoWin.innerHTML += `${fieldsSimulation[4]}`;
+
+            //Change color for win fields
+            for(let i=2;i<=6;i+=2) {
+                fieldsArray[i].style.backgroundColor = winColor;
+            }
+        }
+
+    }
+
 
     function selectField(){
         move++;
         if(move%2 === 0)
         {
+            whoMove.innerHTML = "move circle";
 
             this.innerHTML = crossSvg;
             this.removeEventListener('click',selectField);
             this.style.backgroundColor = "#DB6759";
+
+            fieldsSimulation[this.getAttribute('data-field-id') - 1] = 'cross';
+
         }else {
+            whoMove.innerHTML = "move cross";
 
             this.innerHTML = circleSvg;
             this.removeEventListener('click',selectField);
             this.style.backgroundColor = "#EBAE51";
+
+            fieldsSimulation[this.getAttribute('data-field-id')- 1] = 'circle';
         }
+
+        winningLogic();
 
     }
 
