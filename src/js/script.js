@@ -90,39 +90,58 @@ const crossSvg = "<svg class=\"svg\" version=\"1.1\" id=\"Capa_1\" xmlns=\"http:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Menu variables
+const twoPlayer = document.getElementById("twoPlayers");
 const singlePlayer = document.getElementById("singlePlayer");
-const twoPlayer = document.getElementById("twoPlayer");
 const ranking = document.getElementById("ranking");
 
-// Game variables
+// ## Game variables ##
 const whoMove = document.getElementById("whoMove");
 
-// Show who has the move now
+//  Select single  player mode
+twoPlayer.addEventListener('click',turnOneTwoPlayerMode);
+
+// Who first moving
 let move = Math.floor((Math.random()*10)+1);
-if(move%2 === 0) {
-    whoMove.innerHTML = "move circle";
-    whoMove.style.color = "#EBAE51";
-}else {
-    whoMove.innerHTML = "move cross";
-    whoMove.style.color = "#DB6759";
+function whoFirstMoving() {
+    if(move%2 === 0) {
+        whoMove.innerHTML = "move circle";
+        whoMove.style.color = "#EBAE51";
+    }else {
+        whoMove.innerHTML = "move cross";
+        whoMove.style.color = "#DB6759";
+    }
 }
 
-//  Select single  player mode
-singlePlayer.addEventListener('click',turnOneSinglePlayerMode);
-
-
 /// Main function game
-function turnOneSinglePlayerMode() {
+function turnOneTwoPlayerMode() {
+    whoFirstMoving();
     // Win color field
     const results = document.getElementById('results');
     const whoWin = document.getElementById('whoWin');
     const winColor= "green";
     const scale = "scale(1)";
+    const buttonBack = document.getElementById('buttonBack');
+
+    function onNextGameButton() {
+        results.style.display = "table";
+        whoMove.innerHTML ='';
+        // Next Game
+        buttonBack.style.display = "table";
+        buttonBack.innerHTML = "<button type=\"button\" >Next Game</button>";
+        buttonBack.style.margin = "0 auto";
+        buttonBack.addEventListener('click', function () {
+            window.location.reload(true);
+        });
+
+    }
 
     function winEffects(j){
+        //Change color on win fields
         fieldsArray[j].style.backgroundColor = winColor;
         fieldsArray[j].style.transform = scale;
-        results.style.display = "block";
+        // Next Game
+        onNextGameButton();
+
     }
 
     //Array simulation field of game
@@ -136,6 +155,8 @@ function turnOneSinglePlayerMode() {
     const ticTacToe = document.getElementById('ticTacToe');
     ticTacToe.style.display = "block";
 
+    // number clicks of fields  DRAW
+    let draw = 0;
 
     let fieldsArray =[];
 
@@ -147,26 +168,27 @@ function turnOneSinglePlayerMode() {
     }
 
     function winningLogic() {
-        console.log(fieldsSimulation);
+        // console.log(fieldsSimulation);
 
+        //Count the number of moves
+        draw++;
         // Win horizontal row 1,2,3
         for(let i=0;i<9;i+=3) {
-            if(fieldsSimulation[i]===fieldsSimulation[i+1]&&fieldsSimulation[i+1]===fieldsSimulation[i+2]){
+            if(fieldsSimulation[i]===fieldsSimulation[i+1]&&fieldsSimulation[i+1]===fieldsSimulation[i+2]) {
                 delAllEventOnFields();
-                whoWin.innerHTML += `${fieldsSimulation[i]}`;
+                whoWin.innerHTML += `Win ${fieldsSimulation[i]}`;
 
                 //Change color for win fields
-                for(let j=i;j<(i+3);j+=1) {
+                for (let j = i; j < (i + 3); j += 1) {
                     winEffects(j);
                 }
             }
-            console.log(i);
         }
         // Win vertical column 1,2,3
         for(let i=0;i<3;i++) {
             if (fieldsSimulation[i] === fieldsSimulation[i+3] && fieldsSimulation[i+3] === fieldsSimulation[i+6]) {
                 delAllEventOnFields();
-                whoWin.innerHTML += `${fieldsSimulation[i+3]}`;
+                whoWin.innerHTML += `Win ${fieldsSimulation[i+3]}`;
 
                 //Change color for win fields
                 for(let j=i;j<=(i+6);j+=3) {
@@ -177,7 +199,7 @@ function turnOneSinglePlayerMode() {
         //Win diagonally
         if (fieldsSimulation[0] === fieldsSimulation[4] && fieldsSimulation[4] === fieldsSimulation[8]) {
             delAllEventOnFields();
-            whoWin.innerHTML += `${fieldsSimulation[4]}`;
+            whoWin.innerHTML += `Win ${fieldsSimulation[4]}`;
 
             //Change color for win fields
             for(let i=0;i<=8;i+=4) {
@@ -186,12 +208,17 @@ function turnOneSinglePlayerMode() {
         }else
         if (fieldsSimulation[2] === fieldsSimulation[4] && fieldsSimulation[4] === fieldsSimulation[6]) {
             delAllEventOnFields();
-            whoWin.innerHTML += `${fieldsSimulation[4]}`;
+            whoWin.innerHTML += `Win ${fieldsSimulation[4]}`;
 
             //Change color for win fields
             for(let i=2;i<=6;i+=2) {
                 winEffects(i);
             }
+        }else
+        if(draw===9) {
+            whoWin.innerHTML="Draw";
+            onNextGameButton();
+
         }
 
     }

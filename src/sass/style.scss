@@ -40,6 +40,7 @@ html {
               border-radius: 7rem;
               font-size: 5rem;
               font-family: 'Pacifico', cursive;
+              background-color: #FFFFFF;
             }
           }
         }
@@ -50,12 +51,12 @@ html {
 
         .main-informations {
           @extend  %flex-center;
-          padding: 5rem 5rem;
-          font-size: 5rem;
+          padding: 3rem 3rem;
+          font-size: 6rem;
+          letter-spacing: 0.5rem;
         }
 
         .game-field {
-
           .row {
             @extend %flex-center;
             .svg {
@@ -71,23 +72,29 @@ html {
               margin: 1rem;
               border-radius: 1rem;
               background: $field-color;
-
-              &:hover {
-
-
-              }
             }
-
           }
+        }
+      }
+      .button-back {
+        display: none;
+        margin: 5rem auto;
 
+        button {
+          background-color: #FFFFFF;
+          width: 30rem;
+          height: 13rem;
+          border-radius: 7rem;
+          font-size: 5rem;
+          font-family: 'Pacifico', cursive;
         }
       }
       .results {
-        display: none;
         font-size: 5rem;
-        width: 100%;
-        height: 100%;
-        background: green;
+        display: none;
+        margin: 4rem auto;
+        text-transform: uppercase;
+        letter-spacing: 0.5rem;
       }
     }
   }
