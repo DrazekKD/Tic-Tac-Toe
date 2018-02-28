@@ -190,25 +190,9 @@ function turnOnSinglePlayerMode() {
     //show game field and hide menu
     gameMenu.style.display = "none";
     ticTacToe.style.display = "block";
-
-    whoFirstMoving();
-    // addEventForAllFields(null);
-    //if the first move is a computer
-    if(move%2 !== 0 ) {
-        let randomClick = Math.floor((Math.random()*9)); //draw the first field
-        setTimeout(function () {
-            fieldsSimulation[randomClick] = 'cross';
-            fieldsArray[randomClick].innerHTML = crossSvg;
-            fieldsArray[randomClick].style.backgroundColor = crossFieldsColor;
-            fieldsArray[randomClick].removeEventListener('click',onePlayer);
-
-            whoMove.style.color = circleFieldsColor;
-            whoMove.innerHTML = "move circle";
-            move++;
-            draw++;
-        },1500)
-    }
-
+    
+    whoMove.style.color = circleFieldsColor;
+    whoMove.innerHTML = "move circle";
     //next moves
     addEventForAllFields(onePlayer);
     function onePlayer() {
