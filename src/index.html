@@ -6,38 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/game-field.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&amp;subset=latin-ext" rel="stylesheet">
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
     <main class="container">
+
         <section>
             <div class="game-menu" id="gameMenu">
                 <div class="logo"><span>Tic-Tac-Toe</span></div>
                 <div class="menu">
-                    <div class="menu-buttons">
+                    <div class="menu-buttons animated slideInLeft">
                         <button type="button" id="singlePlayer">
                             <span>1 Player</span>
                         </button>
                     </div>
-                    <div class="menu-buttons">
+                    <div class="menu-buttons animated slideInRight">
                         <button type="button" id="twoPlayers">
                             <span>2 Players</span>
                         </button>
                     </div>
-                    <div class="menu-buttons">
-                        <button type="button" id="Ranking">
-                            <span>Ranking</span>
-                        </button>
-                    </div>
+                    <!--<div class="menu-buttons animated slideInLeft">-->
+                        <!--<button type="button" id="Ranking">-->
+                            <!--<span>Ranking</span>-->
+                        <!--</button>-->
+                    <!--</div>-->
 
                 </div>
             </div>
         </section>
         <section>
-            <div class="tic-tac-toe" id="ticTacToe">
+            <div class="tic-tac-toe animated slideInDown" id="ticTacToe">
                 <section class="main-informations">
                     <div class="who-moving">
-                        <span id="whoMove">move </span>
+                        <span id="whoMove">move</span>
                     </div>
                 </section>
                 <section class="game-field">
@@ -58,10 +62,11 @@
                     </div>
                 </section>
             </div>
-
-            <div class="results" id="results">
-                <p>Win</p>
-                <span id="whoWin"></span>
+            <div class="results animated zoomIn" id="results">
+                 <span id="whoWin"></span>
+            </div>
+            <div class="button-back" id="buttonBack">
+                <button type="button">Back</button>
             </div>
         </section>
     </main>
