@@ -24,6 +24,16 @@ html {
           text-align: center;
           font-size: 8rem;
           margin-bottom: 5rem;
+          text-shadow: 1px 1px #000000;
+          .tic{
+            color: #66ACD3;
+          }
+          .tac{
+            color: #DA9D40;
+          }
+          .toe{
+            color: #CA5648;
+          }
         }
         .menu {
           display: flex;
@@ -35,12 +45,19 @@ html {
             margin: 3rem;
 
             button {
-              width: 30rem;
+              width: 40rem;
               height: 13rem;
               border-radius: 7rem;
               font-size: 5rem;
               font-family: 'Pacifico', cursive;
               background-color: #FFFFFF;
+              &:hover {
+                background-color: $button-hover-color;
+                color: #66ACD3;
+              }
+            }
+            .twoPlayersButton:hover {
+              color: #DA9D40;
             }
           }
         }
@@ -51,9 +68,10 @@ html {
 
         .main-informations {
           @extend  %flex-center;
-          padding: 3rem 3rem;
-          font-size: 6rem;
+          padding: 0rem 3rem;
+          font-size: 7rem;
           letter-spacing: 0.5rem;
+          text-shadow: 0.1rem 0.1rem #000000;
         }
 
         .game-field {
@@ -72,6 +90,7 @@ html {
               margin: 1rem;
               border-radius: 1rem;
               background: $field-color;
+              box-shadow: 0.5rem 0.5rem #DDDD;
             }
           }
         }
@@ -82,11 +101,15 @@ html {
 
         button {
           background-color: #FFFFFF;
-          width: 30rem;
+          width: 40rem;
           height: 13rem;
           border-radius: 7rem;
           font-size: 5rem;
           font-family: 'Pacifico', cursive;
+          &:hover {
+            background-color: $button-hover-color;
+            color: #007F09;
+          }
         }
       }
       .results {

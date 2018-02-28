@@ -20,7 +20,9 @@ let draw = 0;
 // variable to check if someone won
 let win = 0;
 // color win fields
-const winColor= "green";
+const winColor= '#007F09';
+const circleFieldsColor ='#DA9D40';
+const crossFieldsColor ='#CA5648';
 
 const gameMenu = document.getElementById('gameMenu');
 const ticTacToe = document.getElementById('ticTacToe');
@@ -33,10 +35,10 @@ const buttonBack = document.getElementById('buttonBack');
 function whoFirstMoving() {
     if(move%2 === 0) {
         whoMove.innerHTML = "move circle";
-        whoMove.style.color = "#EBAE51";
+        whoMove.style.color = circleFieldsColor;
     }else {
         whoMove.innerHTML = "move cross";
-        whoMove.style.color = "#DB6759";
+        whoMove.style.color = crossFieldsColor;
     }
 }
 
@@ -54,22 +56,22 @@ function selectField(){
     move++;
     if(move%2 === 0)
     {
-        whoMove.style.color = "#EBAE51";
+        whoMove.style.color = circleFieldsColor;
         whoMove.innerHTML = "move circle";
 
         this.innerHTML = crossSvg;
         this.removeEventListener('click',selectField);
-        this.style.backgroundColor = "#DB6759";
+        this.style.backgroundColor = crossFieldsColor;
 
         fieldsSimulation[this.getAttribute('data-field-id') - 1] = 'cross';
 
     }else {
-        whoMove.style.color = "#DB6759";
+        whoMove.style.color = crossFieldsColor;
         whoMove.innerHTML = "move cross";
 
         this.innerHTML = circleSvg;
         this.removeEventListener('click',selectField);
-        this.style.backgroundColor = "#EBAE51";
+        this.style.backgroundColor = circleFieldsColor;
 
         fieldsSimulation[this.getAttribute('data-field-id')- 1] = 'circle';
 
@@ -197,10 +199,10 @@ function turnOnSinglePlayerMode() {
         setTimeout(function () {
             fieldsSimulation[randomClick] = 'cross';
             fieldsArray[randomClick].innerHTML = crossSvg;
-            fieldsArray[randomClick].style.backgroundColor = "#DB6759";
+            fieldsArray[randomClick].style.backgroundColor = crossFieldsColor;
             fieldsArray[randomClick].removeEventListener('click',onePlayer);
 
-            whoMove.style.color = "#EBAE51";
+            whoMove.style.color = circleFieldsColor;
             whoMove.innerHTML = "move circle";
             move++;
             draw++;
@@ -212,12 +214,12 @@ function turnOnSinglePlayerMode() {
     function onePlayer() {
             //player moves
             move++;
-            whoMove.style.color = "#DB6759";
+            whoMove.style.color = crossFieldsColor;
             whoMove.innerHTML = "move cross";
 
             this.innerHTML = circleSvg;
             this.removeEventListener('click',onePlayer);
-            this.style.backgroundColor = "#EBAE51";
+            this.style.backgroundColor = circleFieldsColor;
 
             fieldsSimulation[this.getAttribute('data-field-id') - 1] = 'circle';
             winningLogic(onePlayer);
@@ -231,10 +233,10 @@ function turnOnSinglePlayerMode() {
                     function clickComputerLogic(numberField) {
                         fieldsSimulation[numberField] = 'cross';
                         fieldsArray[numberField].innerHTML = crossSvg;
-                        fieldsArray[numberField].style.backgroundColor = "#DB6759";
+                        fieldsArray[numberField].style.backgroundColor = crossFieldsColor;
                         fieldsArray[numberField].removeEventListener('click',onePlayer);
 
-                        whoMove.style.color = "#EBAE51";
+                        whoMove.style.color = circleFieldsColor;
                         whoMove.innerHTML = "move circle";
                         move++;
                         goodRandom= true;
@@ -289,10 +291,10 @@ function turnOnSinglePlayerMode() {
                                 if(fieldsSimulation[randomClick] !=='cross' && fieldsSimulation[randomClick] !== 'circle') {
                                     fieldsSimulation[randomClick] = 'cross';
                                     fieldsArray[randomClick].innerHTML = crossSvg;
-                                    fieldsArray[randomClick].style.backgroundColor = "#DB6759";
+                                    fieldsArray[randomClick].style.backgroundColor = crossFieldsColor;
                                     fieldsArray[randomClick].removeEventListener('click',onePlayer);
 
-                                    whoMove.style.color = "#EBAE51";
+                                    whoMove.style.color = circleFieldsColor;
                                     whoMove.innerHTML = "move circle";
                                     move++;
                                     goodRandom = true;
